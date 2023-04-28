@@ -1,0 +1,55 @@
+<div class="mt-lg-5 mt-sm-2 mt-1 container">
+    <form [formGroup]="carForm" (ngSubmit)="submit()">
+      <div class="row pt-2">
+        <div class="col-lg col-md-6">
+          <label class="form-label" for="rform-name">Name</label>
+          <input class="form-control" id="rform-name" formControlName="name">
+        </div>
+  
+        <div class="col-lg col-md-6">
+          <label class="form-label" for="rform-dob">Date Of Birth</label>
+          <input class="form-control" id="rform-dob" formControlName="dob">
+        </div>
+  
+        <div class="col-lg col-md-12">
+          <label class="form-label" for="rform-band">Band</label>
+          <input class="form-control" id="rform-band" formControlName="band">
+        </div>
+      </div>
+  
+      <form [formGroup]="address()">
+        <div class="row pt-2">
+          <div class="col-lg col-md-6">
+            <label class="form-label" for="rform-houseNo">House No</label>
+            <input class="form-control" id="rform-houseNo" formControlName="houseNo">
+          </div>
+  
+          <div class="col-lg col-md-6">
+            <label class="form-label" for="rform-street">Street</label>
+            <input class="form-control" id="rform-street" formControlName="street">
+          </div>
+  
+          <div class="col-lg col-md-12">
+            <label class="form-label" for="rform-zipCode">ZipCode</label>
+            <input class="form-control" id="rform-zipCode" formControlName="zipCode">
+          </div>
+        </div>
+      </form>
+  
+      <div class="row pt-2">
+        <div class="col"><button type="button" class="btn btn-primary w-100" (click)="add()">Add Skill</button></div>
+      </div>
+  
+      <ng-container formArrayName="skills">
+        <div *ngFor="let item of names().controls; let i = index">
+          <div class="row pt-2">
+            <div class="col-lg-8 col-md-12 mt-lg-0"><input class="form-control" [formControlName]="i"></div>
+            <div class="col-lg mt-lg-0 mt-2"><button type="button" class="btn btn-secondary w-100"
+                (click)="remove(i)">Remove</button></div>
+          </div>
+        </div>
+      </ng-container>
+    </form>
+  </div>
+  
+  <!-- <button type="submit">Submit</button> -->
