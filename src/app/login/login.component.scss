@@ -5,3 +5,14 @@
     height: 1px;
     background: #eee;
 }
+
+
+@media screen and (max-width:500px) {
+
+    .m-card {
+        padding: 3rem !important;
+        background: whitesmoke;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    }
+}

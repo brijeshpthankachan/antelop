@@ -1,6 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Firestore, addDoc, collection } from '@angular/fire/firestore'
+import {
+	Firestore,
+	addDoc,
+	collection,
+	collectionData,
+	doc,
+	updateDoc,
+} from '@angular/fire/firestore'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
 	selector: 'app-register',
@@ -10,7 +18,8 @@ import { FormBuilder, FormGroup } from '@angular/forms'
 export class RegisterComponent implements OnInit {
 	constructor(
 		private readonly fb: FormBuilder,
-		private readonly fs: Firestore
+		private readonly fs: Firestore,
+		private readonly toaster: ToastrService
 	) {}
 
 	registrationForm: FormGroup = new FormGroup({})
@@ -19,6 +28,8 @@ export class RegisterComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.buildForm()
+		this.getData()
+		this.updateData('2MFDDrvxqw3OHsEkoT38')
 	}
 
 	buildForm() {
@@ -35,8 +46,29 @@ export class RegisterComponent implements OnInit {
 	onSubmit = () => {
 		const collectionInstance = collection(this.fs, 'users')
 		addDoc(collectionInstance, this.registrationForm.value)
-			.then(() => console.log('saved data'))
+			.then((data) => {
+				this.toaster.success('account added successfully')
+				console.log(data)
+			})
 			.catch((err) => console.log(err))
 	}
+
+	getData = () => {
+		const collectionInstance = collection(this.fs, 'users')
+		collectionData(collectionInstance, { idField: 'id' }).subscribe((data) =>
+			console.log(data)
+		)
+	}
+
+	updateData = (id: string) => {
+		const docInstance = doc(this.fs, 'users', id)
+		const updateData = {
+			name: 'Brijesh P Thankachan',
+		}
+		updateDoc(docInstance, updateData)
+			.then((data) => console.log(data))
+			.catch((err) => console.log(err))
+	}
+
 	closeRegisterScreen = () => this.isRegisterScreenVisibleChange.emit(false)
 }
