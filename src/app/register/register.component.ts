@@ -1,5 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { Firestore, addDoc, collection } from '@angular/fire/firestore'
+import {
+	Firestore,
+	addDoc,
+	collection,
+	collectionData,
+	doc,
+	updateDoc,
+} from '@angular/fire/firestore'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr'
 
@@ -21,6 +28,8 @@ export class RegisterComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.buildForm()
+		this.getData()
+		this.updateData('2MFDDrvxqw3OHsEkoT38')
 	}
 
 	buildForm() {
@@ -43,5 +52,23 @@ export class RegisterComponent implements OnInit {
 			})
 			.catch((err) => console.log(err))
 	}
+
+	getData = () => {
+		const collectionInstance = collection(this.fs, 'users')
+		collectionData(collectionInstance, { idField: 'id' }).subscribe((data) =>
+			console.log(data)
+		)
+	}
+
+	updateData = (id: string) => {
+		const docInstance = doc(this.fs, 'users', id)
+		const updateData = {
+			name: 'Brijesh P Thankachan',
+		}
+		updateDoc(docInstance, updateData)
+			.then((data) => console.log(data))
+			.catch((err) => console.log(err))
+	}
+
 	closeRegisterScreen = () => this.isRegisterScreenVisibleChange.emit(false)
 }

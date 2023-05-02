@@ -10,6 +10,13 @@ body {
     padding: 0;
 }
 
+@media screen and (max-width:500px) {
+    body {
+        background: ivory;
+        height: 90vh;
+    }
+}
+
 body {
     display: flex;
     justify-content: center;
