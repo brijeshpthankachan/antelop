@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+	selector: 'app-home',
+	templateUrl: './home.component.html'
 })
 export class HomeComponent {
-
-  constructor(private readonly router: Router) { }
-  navigateToReactiveFormsComponent = () => this.router.navigate(['reactive-forms'])
+	constructor(private readonly router: Router) { }
+	navigateToReactiveFormsComponent = () => this.router.navigate(['reactive-forms'])
 }
