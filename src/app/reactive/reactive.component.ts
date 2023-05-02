@@ -3,14 +3,12 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({
 	selector: 'app-reactive',
-	templateUrl: './reactive.component.html'
+	templateUrl: './reactive.component.html',
 })
 export class ReactiveComponent {
-
-  
 	carForm: FormGroup = new FormGroup({})
 
-	constructor(private readonly fb: FormBuilder) { }
+	constructor(private readonly fb: FormBuilder) {}
 
 	ngOnInit() {
 		this.buildForm()
@@ -18,7 +16,7 @@ export class ReactiveComponent {
 
 	names = () => this.carForm.get('skills') as FormArray
 
-	address = ()  => this.carForm.get('address') as FormGroup
+	address = () => this.carForm.get('address') as FormGroup
 
 	add = () => this.names().push(this.fb.control(''))
 
@@ -26,17 +24,16 @@ export class ReactiveComponent {
 
 	submit = () => console.log(this.carForm.value)
 
-	buildForm = () => (this.carForm = this.fb.group({
-		name: [],
-		dob: [],
-		band: [],
-		address: this.fb.group({
-			houseNo: [],
-			street: [],
-			zipCode: []
-		}),
-		skills: this.fb.array([])
-	}))
-
-
+	buildForm = () =>
+		(this.carForm = this.fb.group({
+			name: [],
+			dob: [],
+			band: [],
+			address: this.fb.group({
+				houseNo: [],
+				street: [],
+				zipCode: [],
+			}),
+			skills: this.fb.array([]),
+		}))
 }
