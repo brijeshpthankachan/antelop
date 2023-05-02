@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { Firestore, addDoc, collection } from '@angular/fire/firestore'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
 	selector: 'app-register',
@@ -10,7 +11,8 @@ import { FormBuilder, FormGroup } from '@angular/forms'
 export class RegisterComponent implements OnInit {
 	constructor(
 		private readonly fb: FormBuilder,
-		private readonly fs: Firestore
+		private readonly fs: Firestore,
+		private readonly toaster: ToastrService
 	) {}
 
 	registrationForm: FormGroup = new FormGroup({})
@@ -35,7 +37,10 @@ export class RegisterComponent implements OnInit {
 	onSubmit = () => {
 		const collectionInstance = collection(this.fs, 'users')
 		addDoc(collectionInstance, this.registrationForm.value)
-			.then(() => console.log('saved data'))
+			.then((data) => {
+				this.toaster.success('account added successfully')
+				console.log(data)
+			})
 			.catch((err) => console.log(err))
 	}
 	closeRegisterScreen = () => this.isRegisterScreenVisibleChange.emit(false)
