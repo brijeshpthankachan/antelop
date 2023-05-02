@@ -9,6 +9,7 @@ import { HomeComponent } from '@app/home/home.component'
 import { LoginComponent } from '@app/login/login.component'
 import { ReactiveComponent } from '@app/reactive/reactive.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { ToastrModule } from 'ngx-toastr'
 import { environment } from '../environments/environment'
 import { RegisterComponent } from './register/register.component'
 
@@ -25,6 +26,7 @@ import { RegisterComponent } from './register/register.component'
 		AppRoutingModule,
 		ReactiveFormsModule,
 		NgbModule,
+		ToastrModule.forRoot(),
 		provideFirebaseApp(() => initializeApp(environment.firebase)),
 		provideFirestore(() => getFirestore()),
 	],
