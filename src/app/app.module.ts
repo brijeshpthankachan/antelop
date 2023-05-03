@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
+import { AngularFireModule } from '@angular/fire/compat'
 import { getFirestore, provideFirestore } from '@angular/fire/firestore'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser'
@@ -29,7 +29,7 @@ import { environment } from '../environments/environment'
 		NgbModule,
 		BrowserAnimationsModule,
 		ToastrModule.forRoot(),
-		provideFirebaseApp(() => initializeApp(environment.firebase)),
+		AngularFireModule.initializeApp(environment.firebase),
 		provideFirestore(() => getFirestore()),
 	],
 	providers: [],
