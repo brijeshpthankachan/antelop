@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 import { AuthService } from '@app/services/auth.service'
 
 @Component({
@@ -8,11 +9,16 @@ import { AuthService } from '@app/services/auth.service'
 })
 export class LoginComponent {
 	isRegisterScreenVisible = false
-	constructor(private readonly authService: AuthService) {}
+	constructor(
+		private readonly authService: AuthService,
+		private readonly router: Router
+	) {}
 
 	showRegisterScreen = () => (this.isRegisterScreenVisible = true)
 
 	googleLogin() {
-		this.authService.signInWithGoogle()
+		this.authService
+			.signInWithGoogle()
+			.then(() => this.router.navigateByUrl('profile'))
 	}
 }
