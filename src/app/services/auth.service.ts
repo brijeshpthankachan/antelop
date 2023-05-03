@@ -7,12 +7,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth'
 export class AuthService {
 	constructor(private readonly fireAuth: AngularFireAuth) {}
 
-	signInWithGoogle() {
-		return this.fireAuth
-			.signInWithPopup(new GoogleAuthProvider())
-			.then((data) => {
-				console.log(data)
-			})
-			.catch((err) => console.log(err))
+	async signInWithGoogle() {
+		const data = await this.fireAuth.signInWithPopup(new GoogleAuthProvider())
+		localStorage.setItem('currentUser', JSON.stringify(data))
 	}
 }

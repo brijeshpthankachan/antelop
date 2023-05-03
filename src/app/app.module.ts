@@ -13,6 +13,7 @@ import { RegisterComponent } from '@app/register/register.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ToastrModule } from 'ngx-toastr'
 import { environment } from '../environments/environment'
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { environment } from '../environments/environment'
 		ReactiveComponent,
 		LoginComponent,
 		RegisterComponent,
+		ProfileComponent,
 	],
 	imports: [
 		BrowserModule,
