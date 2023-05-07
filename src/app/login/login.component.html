@@ -14,17 +14,19 @@
         <div class="divider d-flex align-items-center my-4">
             <p class="text-center fw-bold mx-3 mb-0">Or</p>
         </div>
-        <input class="form-control" type="text" placeholder="email address">
-        <input class="form-control" type="text" placeholder="password">
-        <div class="d-flex justify-content-end">
-            <p>forgot password? </p>
-        </div>
-        <button class="btn btn-primary rounded-pill shadow w-100">login</button>
-        <hr>
-        <div class="d-flex justify-content-between align-items-center">
-            <p>don't have an account? </p>
-            <button class="btn btn-secondary rounded-pill shadow" (click)="showRegisterScreen()">register</button>
-        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+            <input class="form-control" formControlName="email" placeholder="email address">
+            <input class="form-control" formControlName="password" placeholder="password">
+            <div class="d-flex justify-content-end">
+                <p>forgot password? </p>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-pill shadow w-100">login</button>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <p>don't have an account? </p>
+                <button class="btn btn-secondary rounded-pill shadow" (click)="showRegisterScreen()">register</button>
+            </div>
+        </form>
     </div>
     <ng-container>
         <app-register *ngIf="isRegisterScreenVisible"

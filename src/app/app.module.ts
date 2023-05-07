@@ -12,7 +12,7 @@ import { ReactiveComponent } from '@app/reactive/reactive.component'
 import { RegisterComponent } from '@app/register/register.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ToastrModule } from 'ngx-toastr'
-import { environment } from '../environments/environment'
+import { firebaseconfig } from 'src/configs/firebaseconfig'
 import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
@@ -31,7 +31,7 @@ import { ProfileComponent } from './profile/profile.component'
 		NgbModule,
 		BrowserAnimationsModule,
 		ToastrModule.forRoot(),
-		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireModule.initializeApp(firebaseconfig),
 		provideFirestore(() => getFirestore()),
 	],
 	providers: [],
